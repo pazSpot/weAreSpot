@@ -1,0 +1,8 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <mapping pattern="CircleConfig" type="YAML" />
+      <mapping pattern=".circleci/config.yml" type="YAML" />
+    </extensionMap>
+  </component>
+</application>

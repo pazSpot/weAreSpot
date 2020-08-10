@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>weAreSpot</groupId>
+    <artifactId>weAreSpot</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>LATEST</version>
+                <configuration>
+                    <showSuccess>true</showSuccess>
+                    <outputName>maven_report</outputName>
+                    <alwaysGenerateSurefireReport>true</alwaysGenerateSurefireReport>
+                    <aggregate>true</aggregate>
+                    <detail>true</detail>
+                    <linkXRef>true</linkXRef>
+                    <!--Required to redirect from xref-test (because we run tests from prod, not test folder-->
+                    <xrefLocation>${project.reporting.outputDirectory}/xref</xrefLocation>
+                    <reportsDirectories>
+                        <directory>${basedir}/test-output/</directory>
+                        <directory>${basedir}/test-output/junitreports</directory>
+
+                    </reportsDirectories>
+                    <skipTests>true</skipTests>
+
+                    <properties>
+                        <allure.tests.management.pattern>{}
+                        </allure.tests.management.pattern>
+                        <allure.issues.tracker.pattern>{}
+                        </allure.issues.tracker.pattern>
+                    </properties>
+
+                </configuration>
+
+
+                <!--For skipping tests:-->
+                <!--<configuration>-->
+                <!--<skipTests>true</skipTests>-->
+                <!--</configuration>-->
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>fed-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>testng-suites/CONVERSATION-TESTS-CROSS-BROWSERS.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>mob-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>testng-suites/ANDROID-CONVERSATION-NATIVE-APP.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

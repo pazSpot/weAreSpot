@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Suite - PUBLISHERS" parallel="tests" verbose="1">
+
+    <groups>
+        <define name="All Browsers except IE"/>
+        <run>
+            <exclude name="withIE" />
+        </run>
+    </groups>
+
+    <listeners>
+        <listener class-name="configurations.config.Listeners.Listener"></listener>
+    </listeners>
+
+        <test name="Front - Publishers Tests">
+            <classes>
+                <class name="fed.publisherTests"></class>
+            </classes>
+        </test>
+
+</suite>

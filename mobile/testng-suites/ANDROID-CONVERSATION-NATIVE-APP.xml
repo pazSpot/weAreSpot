@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Suite - Android App Conversation" verbose="1">
+
+    <groups>
+        <define name="Android App Tests"></define>
+        <run>
+            <exclude name="MobileIos"></exclude>
+        </run>
+    </groups>
+
+    <listeners>
+        <listener class-name="configurations.config.Listeners.Listener"></listener>
+    </listeners>
+
+    <test name="Android - App Conversation Tests">
+        <classes>
+            <class name="mob.conversationMobileTests"></class>
+        </classes>
+    </test>
+
+</suite>
